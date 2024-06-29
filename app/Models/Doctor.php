@@ -23,13 +23,12 @@ class Doctor extends Model
 
     }
     public function ordonnances(){
-        return $this->hasMany(Ordonnance::class);
+        return $this->hasMany(Ordonnance::class,'id_doc');
 
 
     }
     public function service(){
-        return $this->hasMany(Service::class, 'id');
-
+        return $this->belongsTo(Service::class);
 
     }
 }

@@ -13,5 +13,9 @@ class Service extends Model
         'id', 'nom_service',
     ];
 
-    public $timestamps = false; // Disable automatic timestamps
+    public $timestamps = false; 
+    public function doctors(){
+        return $this->hasMany(Doctor::class, 'id');
+
+    }
 }

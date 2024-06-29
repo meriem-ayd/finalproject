@@ -18,11 +18,7 @@ return new class extends Migration
             $table->string('prenom_patient', 55);  
             $table->integer('age'); 
             $table->date('date'); 
-            $table->string('etat');
-
-            $table->timestamps();  
-
-           
+            $table->timestamps();     
             $table->foreign('id_bcs')
                   ->references('id')
                   ->on('bon_commande_service')

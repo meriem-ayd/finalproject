@@ -356,19 +356,7 @@
                                                 @endif
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <div class="col-lg-2">
-                                                <label class="col-form-label">Email</label>
-                                            </div>
-                                            <div class="col-lg-10">
-                                                <input class="form-control" maxlength="255" name="email" id="defaultconfig-2" type="email" placeholder="">
-                                                @if ($errors->has('email'))
-                                                <small class="text text-danger">
-                                                    {{ $errors->first('email') }}
-                                                </small>
-                                                @endif
-                                            </div>
-                                        </div>
+                                       
                                         <div class="form-group row">
                                             <div class="col-lg-2">
                                                 <label class="col-form-label"> Numéro de téléphone</label>

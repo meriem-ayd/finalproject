@@ -604,17 +604,27 @@
                 <form action="{{ route('bon_commande_service.store') }}" method="POST">
                   @csrf
                   <input type="hidden" id="id_phar" name="id_phar" value="{{ $idPharmacien }}">
-                  <input type="hidden" id="id_doc" name="id_doc" value="{{ $idMedecin }}">
                   <div class="form-group row">
-                    <label for="id_service" class="col-sm-1 col-form-label">Service:</label>
-                    <div class="col-sm-11">
-                      <select class="form-control short-input " id="service_id" name="service_id" title="Service" required>
-                        @foreach($services as $service)
-                        <option value="{{ $service->id }}">{{ $service->nom_service }}</option>
+                    <div class="form-group row">
+                      <label class="col-form-label col-sm-2" >Service:</label>
+                      <div class="col-sm-10">
+                        <p class="form-control-plaintext">{{ Auth::user()->doctor->service->nom_service }}</p>
+                        <input type="hidden" id="service_id" name="service_id" value="{{ Auth::user()->doctor->service->id }}">
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class="form-group row" style="margin-top: 24px;">
+                    <label for="id_doc" class="col-form-label col-sm-2">Doctor:</label>
+                    <div class="col-sm-10">
+                      <select class="form-control short-input" name="id_doc" required>
+                        @foreach($doctors as $doctor)
+                        <option value="{{ $doctor->id }}">{{ $doctor->user->name }}</option>
                         @endforeach
                       </select>
                     </div>
                   </div>
+
 
                   <div class="form-group row align-items-center">
                     <label for="date" class="col-sm-1 col-form-label">Date:</label>
@@ -622,8 +632,6 @@
                       <input type="date" name="date" required class=" short-input" style="border: none; " id="date" name="date" title="Date de la commande" value="{{ old('date') }}" required>
                     </div>
                   </div>
-
-
                   <div id="lignes-container" class="form-group  ligne-bon">
                     <div class="row">
                       <div class="col-sm-3" style="margin-top: 24px;">
@@ -724,24 +732,10 @@
 
         return newLigne;
       }
-
-      function supprimerLigne(croix) {
-        const ligne = croix.closest('.ligne');
-        ligne.remove();
-      }
-      $(document).ready(function() {
-        // Select2 pour le champ service_id
-        $('#service_id').select2({
-          placeholder: "Sélectionnez un service",
-          allowClear: true,
-
-        });
-
-        // Select2 pour les champs DCI dans les lignes de bon de commande
-        $('select[name^="lignes["][name$="][id_dci]"]').select2({
-          placeholder: "Sélectionnez une DCI",
-          allowClear: true
-        });
+      // Select2 pour les champs DCI dans les lignes de bon de commande
+      $('select[name^="lignes["][name$="][id_dci]"]').select2({
+        placeholder: "Sélectionnez une DCI",
+        allowClear: true
       });
     </script>
 

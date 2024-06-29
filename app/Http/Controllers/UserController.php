@@ -72,7 +72,7 @@ class UserController extends Controller
     {
         $services = Service::all();
 
-        return view('addmedecin',compact('services'));
+        return view('addmedecin', compact('services'));
     }
 
     public function getMed()
@@ -89,23 +89,19 @@ class UserController extends Controller
         // Valider les données du formulaire
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users|max:255',
-            'telephone'=> 'required|string|max:255',
-            'speciality'=>'required|string|max:255',
-            'service'=>'required|string|max:255',
+            'telephone' => 'required|string|max:255',
+            'speciality' => 'required|string|max:255',
+            'service' => 'required|string|max:255',
+
         ]);
 
-         // Générer un mot de passe aléatoire de 10 caractères avec Str::random()
-         $password = Str::random(10);
-
-         // Hasher le mot de passe pour le stocker en toute sécurité
-         $hashedPassword = Hash::make($password);
-
-           // Créer un nouvel utilisateur
+        $serviceInfo = Service::where('id', $request->input('service'))->first();
+        // dd($serviceInfo);
+        
         $user = new User();
         $user->name = $validatedData['name'];
-        $user->email = $validatedData['email'];
-        $user->password = $hashedPassword;
+        $user->email=$serviceInfo->email;
+        $user->password=$serviceInfo->password;
         $user->save();
 
         $doctor = new Doctor();
@@ -114,17 +110,11 @@ class UserController extends Controller
         $doctor->service_id = $validatedData['service'];
         $doctor->user_id = $user->id;
         $doctor->save();
-        // Envoyer le mot de passe par email avec le message non haché
-        $message = "Voici vos paramètres de connexion email: {$user->email} et mot de passe: $password";
-        Mail::raw($message, function ($message) use ($user) {
-            $message->to($user->email)->subject('Vos informations de connexion');
-        });
+
 
         // Redirigez ou affichez un message de succès
         return redirect()->route('getaddmedecin')->with('success', 'Votre ajout a été effectuée avec succès.');
     }
-
-
 
     public function updateUser(Request $request, $id)
     {
@@ -190,5 +180,4 @@ class UserController extends Controller
 
         return redirect()->route('getMed')->with('error', 'medecin non trouvé');
     }
-
 }

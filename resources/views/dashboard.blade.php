@@ -248,7 +248,8 @@
               <div class="profile-image online">
                 <img src="images/faces/doctor.jpg" />
               </div>
-              <p> Bienvenue {{ Auth::user()->name }} </p>
+
+              <p> Bienvenue {{ Auth::user()->doctor->service->nom_service}} </p>
               <p> {{ Auth::user()->email }} </p>
 
             </span>

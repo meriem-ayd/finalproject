@@ -13,7 +13,7 @@ class AddIdDocToOrdonnanceTable extends Migration
     public function up()
     {
         Schema::table('ordonnance', function (Blueprint $table) {
-            $table->unsignedBigInteger('id_doc')->after('etat')->nullable();
+            $table->unsignedBigInteger('id_doc')->nullable();
             $table->foreign('id_doc')->references('id')->on('doctors')->onDelete('cascade');
         });
     }

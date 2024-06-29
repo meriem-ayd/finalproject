@@ -25,18 +25,11 @@ class MedecinController extends Controller
         $dcis = Dci::all();
         $services = Service::all();
 
-        // Récupérer l'ID du premier pharmacien
         $idPharmacien = Pharmacist::first()->id;
+        $doctors = Doctor::where('service_id', auth()->user()->doctor->service->id)->get();
 
-        // Récupérer l'ID et le nom du premier médecin associé à l'utilisateur authentifié
-        $medecin = auth()->user()->doctor;
-        $idMedecin = $medecin->id;
-        $nomMedecin = auth()->user()->name;
 
-        // // Initialisation de l'ID commercial par défaut
-        // $idCommerc = $dcis->first()->id_commerc;
-
-        return view('bondecommande', compact('dcis', 'services', 'idPharmacien', 'idMedecin', 'nomMedecin'));
+        return view('bondecommande', compact('dcis', 'services', 'idPharmacien','doctors'));
     }
     protected function getIdCommercForLine($id_dci)
     {
@@ -94,26 +87,25 @@ class MedecinController extends Controller
 
 
 
-
     public function listeBonsDeCommandeMedecin()
     {
         $user = auth()->user();
-
-        // Vérifier si l'utilisateur est un médecin
+    
         if ($user->doctor) {
-            // Récupérer l'ID du médecin
-            $idMedecin = $user->doctor->id;
-
-            // Récupérer les bons de commande du médecin avec les lignes et les informations des DCI
-            $bonsDeCommande = BonCommandeService::where('id_doc', $idMedecin)
-                ->with('lignes.nomCommercial.dci', 'medecin.user')
+            // Récupérer l'ID du service de l'utilisateur connecté
+            $serviceId = $user->doctor->service->id;
+    
+            // Récupérer les bons de commande pour le service de l'utilisateur connecté
+            $bonsDeCommande = BonCommandeService::where('service_id', $serviceId)
+                ->with('lignes.nomCommercial.dci', 'medecin.user', 'service')
                 ->get();
-
+    
             return view('liste', compact('bonsDeCommande'));
         } else {
             return redirect()->back()->with('error', 'Vous n\'êtes pas autorisé à accéder à cette page.');
         }
     }
+    
     // details
 
     public function getbon($id)
@@ -166,7 +158,10 @@ class MedecinController extends Controller
     {
         $services = Service::all();
         $dcis = DCI::all();
-        return view('ordonnance', compact('services', 'dcis'));
+        $doctors = Doctor::where('service_id', auth()->user()->doctor->service->id)->get();
+
+        return view('ordonnance', compact('services', 'dcis','doctors'));
+
     }
 
     // Méthode pour enregistrer une nouvelle ordonnance
@@ -180,7 +175,8 @@ class MedecinController extends Controller
             'prenom_patient' => 'required|string|max:55',
             'age' => 'required|integer',
             'date' => 'required|date',
-            'service' => 'required|exists:services,id',
+            // 'service' => 'required|exists:services,id',
+            
             'quantite_demandee' => 'required|array',
             'quantite_demandee.*' => 'required|integer|min:1',
             'posologie' => 'required|array',
@@ -202,7 +198,7 @@ class MedecinController extends Controller
                 'age' => $request->input('age'),
                 'id_bcs' => $firstBcsId,
                 'date' => $request->input('date'),
-                'id_service' => $request->input('service'),
+                'service_id' => $user->doctor->service->id, // Utiliser le service de l'utilisateur authentifié
                 'id_doc' => $user->doctor->id,
             ]);
 

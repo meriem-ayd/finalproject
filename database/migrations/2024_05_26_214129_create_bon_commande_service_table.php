@@ -20,7 +20,7 @@ class CreateBonCommandeServiceTable extends Migration
             $table->unsignedBigInteger('service_id');
             $table->unsignedInteger('num_bc');
             $table->date('date');
-            $table->string('etat', 50);
+        
             $table->foreign('id_phar')->references('id')->on('pharmacists');
             $table->foreign('id_doc')->references('id')->on('doctors');
             $table->foreign('service_id')->references('id')->on('services');
