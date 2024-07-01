@@ -31,7 +31,7 @@
 <body>
   <div class="container-scroller">
     <!-- partial:../../partials/_navbar.html -->
-    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row" style="background-color: #d3d3d3">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
         {{-- <a class="navbar-brand brand-logo" href="../../index.html"><img src="https://demo.bootstrapdash.com/xollo/template/assets/images/logo.svg" alt="logo" /></a>
             <a class="navbar-brand brand-logo-mini" href="../../index.html"><img src="https://demo.bootstrapdash.com/xollo/template/assets/images/logo-mini.svg" alt="logo" /></a> --}}
@@ -384,63 +384,80 @@
 
 
           @if(Auth::check() && Auth::user()->pharmacist()->exists())
-          <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" href="#bcf" aria-expanded="false" aria-controls="sidebar-layouts">
-              <span class="mdi mdi-file"></span>
-              <span class="menu-title"> Bons Commande Four</span>
-              <i class="mdi mdi-chevron-right menu-arrow"></i>
-            </a>
-            <div class="collapse" id="bcf">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{{route('listeBonsDeCommandeFournisseur')}}"> <span class="mdi mdi-list-box">Liste des Bons</span></a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="collapse" href="#bcs" aria-expanded="false" aria-controls="sidebar-layouts">
+                            <span class="mdi mdi-file"></span>
+                            <span class="menu-title">Consulter commandes</span>
+                            <i class="mdi mdi-chevron-right menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="bcs">
+                            <ul class="nav flex-column sub-menu">
 
-                <li class="nav-item"> <a class="nav-link" href="{{route('bonCF')}}"> <span class="mdi mdi-note-plus">nouveau Bon</span></a></li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" href="#bcs" aria-expanded="false" aria-controls="sidebar-layouts">
-              <span class="mdi mdi-file"></span>
-              <span class="menu-title">Consulter commandes</span>
-              <i class="mdi mdi-chevron-right menu-arrow"></i>
-            </a>
-            <div class="collapse" id="bcs">
-              <ul class="nav flex-column sub-menu">
-
-                <li class="nav-item"> <a class="nav-link" href="{{ route('pharmacien.listeBonsDeCommande') }}"><span class="mdi mdi-list-box"></span>Bons de commande
-                  </a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{route('ordonnances.pharmacien')}}"><span class="mdi mdi-list-box"></span>Ordonnances
-                  </a></li>
-              </ul>
-            </div>
-          </li>
+                                <li class="nav-item"> <a class="nav-link" href="{{ route('pharmacien.listeBonsDeCommande') }}">Bons de commande
+                                </a></li>
+                                <li class="nav-item"> <a class="nav-link" href="{{route('ordonnances.pharmacien')}}">Ordonnances
+                                </a></li>
+                            </ul>
+                        </div>
+                    </li>
 
 
 
-          
 
-          <li class="nav-item">
-            <a class="nav-link" href="{{ route('pharmacien.listebonlivraison')  }}">
-              <span class="mdi mdi-list-box">Liste Bons livraison </span>
-            </a>
-          </li>
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="{{route('pharmacien.listeBonsDeCommande')}}">
+                            <i class="mdi mdi-file"></i>
+                            <span class="menu-title">consulter les commandes</span>
+                        </a>
+                    </li> -->
 
-          <li class="nav-item">
-            <a class="nav-link" href="{{route('listeBonsReception')}}">
-              <span class="mdi mdi-list-box">Liste Bons Réception </span>
-            </a>
-          </li>
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="{{ route('pharmacien.listeBonsDeCommande') }}">
+                            liste bons de commande
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('ordonnances.pharmacien')  }}">
+                            liste des Ordonnances
+                        </a>
+                    </li> -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('pharmacien.listebonlivraison')  }}">
+                        <span class="mdi mdi-list-box">Liste Bons livraison </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="collapse" href="#bcf" aria-expanded="false" aria-controls="sidebar-layouts">
+                            <span class="mdi mdi-file"></span>
+                            <span class="menu-title"> Bons Commande Four</span>
+                            <i class="mdi mdi-chevron-right menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="bcf">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="{{route('listeBonsDeCommandeFournisseur')}}"> <span class="mdi mdi-list-box">Liste des Bons</span></a></li>
 
-          <li class="nav-item"> <a class="nav-link" href="{{route('showEtatStockForm')}}"><span class="mdi mdi-note"></span>Etat de Stock</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="{{route('bonCF')}}"> <span class="mdi mdi-note-plus">nouveau Bon</span></a></li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link"  href="{{route('listeBonsReception')}}">
+                        <span class="mdi mdi-list-box">Liste Bons Réception </span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item"> <a class="nav-link" href="{{route('showEtatStockForm')}}"><span class="mdi mdi-note-plus"></span>Etat de Stock</a></li>
 
 
-          <li class="nav-item">
-            <a class="nav-link" href="{{route('getAdminLogout')}}">
-              <i class="mdi mdi-logout"></i>
-              <span class="menu-title">Déconnexion</span>
-            </a>
-          </li>
-          @endif
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('getAdminLogout')}}">
+                            <i class="mdi mdi-logout"></i>
+                            <span class="menu-title">Déconnexion</span>
+                        </a>
+                    </li>
+                    @endif
+
 
           @if(Auth::check() && Auth::user()->doctor()->exists())
 
@@ -540,7 +557,7 @@
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="{{route('listeBonsReception')}}"> <span class="mdi mdi-list-box">Liste des Bons</span></a></li>
 
-                <li class="nav-item"> <a class="nav-link" href=""> <span class="mdi mdi-note-plus">nouveau Bon</span></a></li>
+                {{-- <li class="nav-item"> <a class="nav-link" href=""> <span class="mdi mdi-note-plus">nouveau Bon</span></a></li> --}}
                 {{--
                                 <form action="{{ route('bonCR', $bonCommande->id) }}" method="GET">
                 <button type="submit" class="btn btn-primary" style="margin-top: 5px;">Réceptionner</button>
@@ -591,14 +608,14 @@
       <div class="main-panel">
         <div class="content-wrapper">
           <div class="row">
-            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card" style="background-color: #d3d3d3">
               <div class="card card-statistics">
                 <div class="card-body">
                   @if(Auth::check() && Auth::user()->admin)
 
                   <div class="clearfix">
                     <div class="float-left">
-                      <i class="mdi mdi-office-building text icon-lg"></i>
+                      <i class="mdi mdi-office-building text icon-lg" style="color: #52d1b7;"></i>
 
                       {{-- <i class="mdi mdi-cube text-danger icon-lg"></i> --}}
                     </div>
@@ -620,7 +637,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card" style="background-color: #d3d3d3">
               <div class="card card-statistics">
                 <div class="card-body">
                   <div class="clearfix">
@@ -628,7 +645,7 @@
                                       <i class="mdi mdi-receipt text-warning icon-lg"></i>
                                     </div> --}}
                     <div class="float-left">
-                      <i class="mdi mdi-account-group text icon-lg"></i>
+                        <i class="mdi mdi-account-group text icon-lg" style="color: #52d1b7;"></i>
                     </div>
                     {{-- <span class="mdi mdi-account-group"></span> --}}
 
@@ -647,12 +664,12 @@
                 </div>
               </div>
             </div>
-            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card" style="background-color: #d3d3d3;">
               <div class="card card-statistics">
                 <div class="card-body">
                   <div class="clearfix">
                     <div class="float-left">
-                      <i class="mdi mdi-doctor text icon-lg"></i>
+                      <i class="mdi mdi-doctor text icon-lg" style="color: #52d1b7;"></i>
 
                       {{-- <i class="mdi mdi-poll-box text-success icon-lg"></i> --}}
                     </div>
@@ -674,7 +691,7 @@
             @if(Auth::check() && Auth::user()->pharmacist)
             <div class="clearfix">
               <div class="float-left">
-                <i class="mdi mdi-file text icon-lg"></i>
+                <i class="mdi mdi-file text icon-lg" style="color: #52d1b7"></i>
               </div>
               <div class="float-right">
                 <a href="{{ route('pharmacien.listebonlivraison')}}">
@@ -793,11 +810,11 @@
 
       <div class="clearfix">
         <div class="float-left">
-          <i class="mdi mdi-file text icon-lg"></i>
+          <i class="mdi mdi-file text icon-lg" style="color: #52d1b7"></i>
         </div>
         <div class="float-right">
           <a href="">
-            <h6 class="mb-0 text-right text-dark">Mes Bons de commande livrés</h6>
+            <h6 class="mb-0 text-right text-dark"> Bons de commande livrés</h6>
           </a>
           <div class="fluid-container">
             <h3 class="font-weight-medium text-right mb-0 text-dark">{{$nbrbcs}}</h3>
@@ -816,11 +833,11 @@
       <div class="card-body">
         <div class="clearfix">
           <div class="float-left">
-            <i class="mdi mdi-file text icon-lg"></i>
+            <i class="mdi mdi-file text icon-lg" style="color: #52d1b7"></i>
           </div>
           <div class="float-right">
             <a href="">
-              <h6 class="mb-0 text-right text-dark">Mes Ordonnances livrés</h6>
+              <h6 class="mb-0 text-right text-dark"> Ordonnances livrés</h6>
             </a>
             {{-- <p class="mb-0 text-right text-dark"></p> --}}
             <div class="fluid-container">

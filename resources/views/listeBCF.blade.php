@@ -40,7 +40,7 @@
 <body>
   <div class="container-scroller">
     <!-- partial:../../partials/_navbar.html -->
-    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row" style="background-color: #d3d3d3">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
         {{-- <a class="navbar-brand brand-logo" href="../../index.html"><img src="https://demo.bootstrapdash.com/xollo/template/assets/images/logo.svg" alt="logo" /></a>
             <a class="navbar-brand brand-logo-mini" href="../../index.html"><img src="https://demo.bootstrapdash.com/xollo/template/assets/images/logo-mini.svg" alt="logo" /></a> --}}
@@ -282,6 +282,16 @@
                       <i class="mdi mdi-gmail me-3"></i>
                       <i class="mdi mdi-account"></i>
                     </div> --}}
+            </span>
+            @endif
+            @if(Auth::check() && Auth::user()->chiefpharmacist)
+            <span class="nav-link" href="#">
+              <div class="profile-image online">
+                <img src="images/faces/icone2.jpg" />
+              </div>
+              <p> Bienvenue {{ Auth::user()->name }} </p>
+              <p> {{ Auth::user()->email }} </p>
+
             </span>
             @endif
 
@@ -601,8 +611,8 @@
                         <th>Bon N°</th>
                         <th>Date</th>
                         <!-- <th>DCI/Forme/Dosage</th> -->
-                        <th>Quantité Demandée</th>
-                        <th>Quantité Restante en Stock</th>
+                        {{-- <th>Quantité Demandée</th>
+                        <th>Quantité Restante en Stock</th> --}}
                         {{-- <th>Action</th> --}}
                         <th>Etat</th>
                         <th>Action</th>
@@ -616,12 +626,12 @@
                         <td>{{ $bon->date }}</td>
                         <!-- <td>
                                                     <ul class="no-bullets">
-                                                        @foreach ($bon->lignesBCF as $ligne)
-                                                        <li>{{ $ligne->dci->dci }}-{{ $ligne->dci->forme }}-{{ $ligne->dci->dosage }}</li>
-                                                        @endforeach
+                          @foreach ($bon->lignesBCF as $ligne)
+                    <li>{{ $ligne->dci->dci }}-{{ $ligne->dci->forme }}-{{ $ligne->dci->dosage }}</li>
+                         @endforeach
                                                     </ul>
                                                 </td> -->
-                        <td>
+                        {{-- <td>
                           <ul class="no-bullets">
                             @foreach($bon->lignesBCF as $ligne)
                             <li>{{ $ligne->quantite_commandee }}</li>
@@ -634,7 +644,7 @@
                             <li>{{ $ligne->quantite_restante }}</li>
                             @endforeach
                           </ul>
-                        </td>
+                        </td> --}}
                         <td class="{{ $bon->is_receptionne ? 'text-receptionne' : 'text-non-receptionne' }}">
                           {{ $bon->is_receptionne ? 'Réceptionné' : 'Non Réceptionné' }}
                         </td>
@@ -730,3 +740,23 @@
       <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
       <!-- Bootstrap JS -->
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+      <script src="vendors/js/vendor.bundle.base.js"></script>
+      <!-- endinject -->
+      <!-- Plugin js for this page -->
+      <script src="vendors/datatables.net/jquery.dataTables.js"></script>
+      <script src="vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+      <!-- End plugin js for this page -->
+      <!-- inject:js -->
+      <script src="js/off-canvas.js"></script>
+      <script src="js/hoverable-collapse.js"></script>
+      <script src="js/misc.js"></script>
+      <script src="js/settings.js"></script>
+      <script src="js/todolist.js"></script>
+      <!-- endinject -->
+      <!-- Custom js for this page -->
+      <!-- End custom js for this page -->
+    </body>
+
+    <!-- Mirrored from demo.bootstrapdash.com/xollo/template/demo_1/pages/tables/data-table.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 16 May 2024 22:43:12 GMT -->
+
+    </html>

@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Mirrored from demo.bootstrapdash.com/xollo/template/demo_1/pages/samples/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 16 May 2024 22:43:15 GMT -->
-
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>MediCare</title>
-    <link rel="shortcut icon" href="/images/logooooo.ico ">
+    <link rel="shortcut icon" href="/images/logooooo.ico">
 
     <!-- plugins:css -->
     <link rel="stylesheet" href="vendors/mdi/css/materialdesignicons.min.css">
@@ -22,8 +20,6 @@
     <!-- Layout styles -->
     <link rel="stylesheet" href="css/demo_1/style.css">
     <!-- End layout styles -->
-    {{-- <link rel="shortcut icon" href="https://demo.bootstrapdash.com/xollo/template/assets/images/favicon.ico" /> --}}
-
 </head>
 
 <body>
@@ -34,8 +30,8 @@
                     <div class="row w-100">
                         <div class="col-lg-4 mx-auto">
                             <div class="auth-form-dark text-left p-5">
-                                <h2 style="margin-left: 20%">Authentification</h2>
-                                <h4 class="font-weight-light"></h4>
+                                <img src="/images/logooooo.png" alt="" width="90px" style="margin-left: 35%;">
+                                <h2 class="mt-3" style="margin-left: 20%">Authentification</h2>
                                 @if(session('error'))
                                 <div class="alert alert-danger alert-dismissible fade show mt-4" role="alert">
                                     {{ session('error') }}
@@ -65,12 +61,14 @@
                                         @endif
                                     </div>
                                     <div class="mt-5 text-center">
-                                        <button type="submit" class="btn btn-block btn-secondary btn-lg font-weight-medium btn-custom " style="background-color: #52d1b7;border-color: transparent;border-radius: 8px;color: black;">Se Connecter</button>
+                                        <button type="submit" class="btn btn-block btn-secondary btn-lg font-weight-medium btn-custom " style="background-color: #D3D3D380;border-color: transparent;border-radius: 8px;color: black;">Se
+                                            Connecter</button>
                                     </div>
                                     {{--
-                                        <div class="mt-3 text-center">
+                                    <div class="mt-3 text-center">
                                         <a href="#" class="auth-link text-white">Forgot password?</a>
-                                    </div> --}}
+                                    </div>
+                                    --}}
                                 </form>
                             </div>
                         </div>
@@ -96,7 +94,5 @@
     <script src="js/todolist.js"></script>
     <!-- endinject -->
 </body>
-
-<!-- Mirrored from demo.bootstrapdash.com/xollo/template/demo_1/pages/samples/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 16 May 2024 22:43:15 GMT -->
 
 </html>

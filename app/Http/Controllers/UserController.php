@@ -77,11 +77,13 @@ class UserController extends Controller
 
     public function getMed()
     {
-        $medecins = Doctor::all();
-        //$medecins = Doctor::with(['user', 'service'])->get();
+        $services = Service::all();
+
+       // $medecins = Doctor::all();
+        $medecins = Doctor::with(['user', 'service'])->get();
 
 
-        return view('medecins', compact('medecins'));
+        return view('medecins', compact('medecins','services'));
     }
 
     public function postAddMed(Request $request)
@@ -97,7 +99,7 @@ class UserController extends Controller
 
         $serviceInfo = Service::where('id', $request->input('service'))->first();
         // dd($serviceInfo);
-        
+
         $user = new User();
         $user->name = $validatedData['name'];
         $user->email=$serviceInfo->email;

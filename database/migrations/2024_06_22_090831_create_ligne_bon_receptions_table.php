@@ -20,9 +20,7 @@ return new class extends Migration
             $table->float('prix_unitaire');
             $table->float('Montant');
             $table->unsignedBigInteger('id_br');
-            $table->unsignedBigInteger('id_commerc');
             $table->foreign('id_br')->references('id')->on('bon_receptions')->onDelete('cascade');
-            $table->foreign('id_commerc')->references('id_commerc')->on('nom_commercial')->onDelete('cascade');
             $table->timestamps();
         });
     }

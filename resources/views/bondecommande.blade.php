@@ -22,7 +22,24 @@
   <style>
     .short-input {
       width: 160px;
-      /* Ajustez la largeur selon vos besoins */
+    }
+
+    .form-group.row {
+      margin-bottom: 10px;
+      font-weight: bold;
+      /* Espacement vertical entre les groupes de formulaire */
+    }
+
+    .form-group.row .col-form-label {
+      padding-top: 5px;
+      /* Espacement au-dessus des étiquettes */
+      margin-bottom: 0;
+      /* Réduction de la marge en dessous des étiquettes */
+    }
+
+    .form-group.row .col-sm-10 {
+      margin-top: 5px;
+      /* Espacement au-dessus des champs de saisie */
     }
   </style>
 
@@ -31,7 +48,7 @@
 <body>
   <div class="container-scroller">
     <!-- partial:../../partials/_navbar.html -->
-    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row" style="background-color: #d3d3d3">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
         {{-- <a class="navbar-brand brand-logo" href="../../index.html"><img src="https://demo.bootstrapdash.com/xollo/template/assets/images/logo.svg" alt="logo" /></a>
             <a class="navbar-brand brand-logo-mini" href="../../index.html"><img src="https://demo.bootstrapdash.com/xollo/template/assets/images/logo-mini.svg" alt="logo" /></a> --}}
@@ -170,7 +187,7 @@
             </div>
             <ul class="chat-list">
               <li class="list active">
-                <div class="profile"><img src="../../../assets/images/faces/face1.jpg" alt="image"><span class="online"></span></div>
+                <div class="profile"><img src="images/faces/face1.jpg" alt="image"><span class="online"></span></div>
                 <div class="info">
                   <p>Thomas Douglas</p>
                   <p>Available</p>
@@ -178,7 +195,7 @@
                 <small class="text-muted my-auto">19 min</small>
               </li>
               <li class="list">
-                <div class="profile"><img src="../../../assets/images/faces/face2.jpg" alt="image"><span class="offline"></span></div>
+                <div class="profile"><img src="images/faces/face2.jpg" alt="image"><span class="offline"></span></div>
                 <div class="info">
                   <div class="wrapper d-flex">
                     <p>Catherine</p>
@@ -189,7 +206,7 @@
                 <small class="text-muted my-auto">23 min</small>
               </li>
               <li class="list">
-                <div class="profile"><img src="../../../assets/images/faces/face3.jpg" alt="image"><span class="online"></span></div>
+                <div class="profile"><img src="images/faces/face3.jpg" alt="image"><span class="online"></span></div>
                 <div class="info">
                   <p>Daniel Russell</p>
                   <p>Available</p>
@@ -197,7 +214,7 @@
                 <small class="text-muted my-auto">14 min</small>
               </li>
               <li class="list">
-                <div class="profile"><img src="../../../assets/images/faces/face4.jpg" alt="image"><span class="offline"></span></div>
+                <div class="profile"><img src="images/faces/face4.jpg" alt="image"><span class="offline"></span></div>
                 <div class="info">
                   <p>James Richardson</p>
                   <p>Away</p>
@@ -205,7 +222,7 @@
                 <small class="text-muted my-auto">2 min</small>
               </li>
               <li class="list">
-                <div class="profile"><img src="../../../assets/images/faces/face5.jpg" alt="image"><span class="online"></span></div>
+                <div class="profile"><img src="images/faces/face5.jpg" alt="image"><span class="online"></span></div>
                 <div class="info">
                   <p>Madeline Kennedy</p>
                   <p>Available</p>
@@ -213,7 +230,7 @@
                 <small class="text-muted my-auto">5 min</small>
               </li>
               <li class="list">
-                <div class="profile"><img src="../../../assets/images/faces/face6.jpg" alt="image"><span class="online"></span></div>
+                <div class="profile"><img src="images/faces/face6.jpg" alt="image"><span class="online"></span></div>
                 <div class="info">
                   <p>Sarah Graves</p>
                   <p>Available</p>
@@ -239,10 +256,7 @@
               </div>
               <p> Bienvenue {{ Auth::user()->name }} </p>
               <p> {{ Auth::user()->email }} </p>
-              <div class="d-flex justify-content-center mt-4 mb-2">
-                <i class="mdi mdi-gmail me-3"></i>
-                <i class="mdi mdi-account"></i>
-              </div>
+
             </span>
             @endif
             @if(Auth::check() && Auth::user()->doctor)
@@ -251,7 +265,8 @@
               <div class="profile-image online">
                 <img src="images/faces/doctor.jpg" />
               </div>
-              <p> Bienvenue {{ Auth::user()->name }} </p>
+
+              <p> service {{ Auth::user()->doctor->service->nom_service}} </p>
               <p> {{ Auth::user()->email }} </p>
 
             </span>
@@ -265,10 +280,7 @@
               </div>
               <p> Bienvenue {{ Auth::user()->name }} </p>
               <p> {{ Auth::user()->email }} </p>
-              {{-- <div class="d-flex justify-content-center mt-4 mb-2">
-                      <i class="mdi mdi-gmail me-3"></i>
-                      <i class="mdi mdi-account"></i>
-                    </div> --}}
+
             </span>
             @endif
             @if(Auth::check() && Auth::user()->chiefpharmacist)
@@ -278,10 +290,7 @@
               </div>
               <p> Bienvenue {{ Auth::user()->name }} </p>
               <p> {{ Auth::user()->email }} </p>
-              {{-- <div class="d-flex justify-content-center mt-4 mb-2">
-                      <i class="mdi mdi-gmail me-3"></i>
-                      <i class="mdi mdi-account"></i>
-                    </div> --}}
+
             </span>
             @endif
 
@@ -393,48 +402,6 @@
 
           @if(Auth::check() && Auth::user()->pharmacist()->exists())
           <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" href="#bcs" aria-expanded="false" aria-controls="sidebar-layouts">
-              <span class="mdi mdi-file"></span>
-              <span class="menu-title">Consulter commandes</span>
-              <i class="mdi mdi-chevron-right menu-arrow"></i>
-            </a>
-            <div class="collapse" id="bcs">
-              <ul class="nav flex-column sub-menu">
-
-                <li class="nav-item"> <a class="nav-link" href="{{ route('pharmacien.listeBonsDeCommande') }}">Bons de commande
-                  </a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{route('ordonnances.pharmacien')}}">Ordonnances
-                  </a></li>
-              </ul>
-            </div>
-          </li>
-
-
-
-
-          <!-- <li class="nav-item">
-                        <a class="nav-link" href="{{route('pharmacien.listeBonsDeCommande')}}">
-                            <i class="mdi mdi-file"></i>
-                            <span class="menu-title">consulter les commandes</span>
-                        </a>
-                    </li> -->
-
-          <!-- <li class="nav-item">
-                        <a class="nav-link" href="{{ route('pharmacien.listeBonsDeCommande') }}">
-                            liste bons de commande
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('ordonnances.pharmacien')  }}">
-                            liste des Ordonnances
-                        </a>
-                    </li> -->
-          <li class="nav-item">
-            <a class="nav-link" href="{{ route('pharmacien.listebonlivraison')  }}">
-              <span class="mdi mdi-list-box">Liste Bons livraison </span>
-            </a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#bcf" aria-expanded="false" aria-controls="sidebar-layouts">
               <span class="mdi mdi-file"></span>
               <span class="menu-title"> Bons Commande Four</span>
@@ -448,6 +415,32 @@
               </ul>
             </div>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#bcs" aria-expanded="false" aria-controls="sidebar-layouts">
+              <span class="mdi mdi-file"></span>
+              <span class="menu-title">Consulter commandes</span>
+              <i class="mdi mdi-chevron-right menu-arrow"></i>
+            </a>
+            <div class="collapse" id="bcs">
+              <ul class="nav flex-column sub-menu">
+
+                <li class="nav-item"> <a class="nav-link" href="{{ route('pharmacien.listeBonsDeCommande') }}"><span class="mdi mdi-list-box"></span>Bons de commande
+                  </a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{route('ordonnances.pharmacien')}}"><span class="mdi mdi-list-box"></span>Ordonnances
+                  </a></li>
+              </ul>
+            </div>
+          </li>
+
+
+
+
+
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('pharmacien.listebonlivraison')  }}">
+              <span class="mdi mdi-list-box">Liste Bons livraison </span>
+            </a>
+          </li>
 
           <li class="nav-item">
             <a class="nav-link" href="{{route('listeBonsReception')}}">
@@ -455,7 +448,7 @@
             </a>
           </li>
 
-          <li class="nav-item"> <a class="nav-link" href="{{route('showEtatStockForm')}}"><span class="mdi mdi-note-plus"></span>Etat de Stock</a></li>
+          <li class="nav-item"> <a class="nav-link" href="{{route('showEtatStockForm')}}"><span class="mdi mdi-note"></span>Etat de Stock</a></li>
 
 
           <li class="nav-item">
@@ -467,6 +460,7 @@
           @endif
 
           @if(Auth::check() && Auth::user()->doctor()->exists())
+
           <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#bcs" aria-expanded="false" aria-controls="sidebar-layouts">
               <span class="mdi mdi-file"></span>
@@ -481,21 +475,49 @@
               </ul>
             </div>
           </li>
+          <!-- ordo -->
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('ordonnance.create') }}">
-              Prescrire une ordonnance
+            <a class="nav-link" data-bs-toggle="collapse" href="#ord" aria-expanded="false" aria-controls="sidebar-layouts">
+              <span class="mdi mdi-file"></span>
+              <span class="menu-title"> Ordonnances</span>
+              <i class="mdi mdi-chevron-right menu-arrow"></i>
             </a>
+            <div class="collapse" id="ord">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{{route('ordonnance.liste')}}"> <span class="mdi mdi-list-box">Liste Ordonnances</span></a></li>
+
+                <li class="nav-item"> <a class="nav-link" href="{{route('ordonnance.create')}}"> <span class="mdi mdi-note-plus">Prescrire Ordonnance </span></a></li>
+              </ul>
+            </div>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ route('ordonnance.liste') }}">
-              liste ordonnances
-            </a>
-          </li>
+          <!--  -->
+          <!-- <li class="nav-item">
+                        <a class="nav-link" href="{{ route('bondecommande') }}">
+                            Etablir Bon de commande
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('bons-de-commande.medecin') }}">
+                            Mes bons de commande
+                        </a>
+                    </li> -->
+          <!-- <li class="nav-item">
+                        <a class="nav-link" href="{{ route('ordonnance.create') }}">
+                            Prescrire une ordonnance
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('ordonnance.liste') }}">
+                            liste ordonnances
+                        </a>
+                    </li> -->
           <li class="nav-item">
             <a class="nav-link" href="{{ route('medecin.bonsDeLivraison') }}">
-              liste bons livraison
+              <span class="mdi mdi-list-box">liste bons livraison</span>
             </a>
           </li>
+
+
 
           <li class="nav-item">
             <a class="nav-link" href="{{route('getAdminLogout')}}">
@@ -506,26 +528,15 @@
           @endif
 
           @if(Auth::check() && (Auth::user()->chiefPharmacist()->exists()))
+          <li class="nav-item"> <a class="nav-link" href="{{route('listeServices')}}"><span class="mdi mdi-office-building"></span>Liste des services</a></li>
+          <li class="nav-item"> <a class="nav-link" href="{{route('getUsers')}}"><span class="mdi mdi-account-group"></span>Liste des utilisateurs</a></li>
+          <li class="nav-item"> <a class="nav-link" href="{{route('liste_dci')}}"><span class="mdi mdi-pill-multiple"></span>Liste Medicaments</a></li>
 
-          <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" href="#services" aria-expanded="false" aria-controls="sidebar-layouts">
-              <span class="mdi mdi-office-building"></span>
-              <span class="menu-title">Gérer Services</span>
-              <i class="mdi mdi-chevron-right menu-arrow"></i>
-            </a>
-            <div class="collapse" id="services">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{{route('listeServices')}}">Liste des services</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{route('getService')}}"><span class="mdi mdi-office-building-plus">Ajouter Service</span>
-                  </a></li>
-              </ul>
-            </div>
-          </li>
 
           <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#bcf" aria-expanded="false" aria-controls="sidebar-layouts">
               <span class="mdi mdi-file"></span>
-              <span class="menu-title"> Bons de Commande</span>
+              <span class="menu-title"> Bon Commande Four</span>
               <i class="mdi mdi-chevron-right menu-arrow"></i>
             </a>
             <div class="collapse" id="bcf">
@@ -556,20 +567,31 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('pharmacien.listeBonsDeCommande') }}">
-              liste bons de commande
+            <a class="nav-link" data-bs-toggle="collapse" href="#bcs" aria-expanded="false" aria-controls="sidebar-layouts">
+              <span class="mdi mdi-file"></span>
+              <span class="menu-title">Consulter commandes</span>
+              <i class="mdi mdi-chevron-right menu-arrow"></i>
             </a>
+            <div class="collapse" id="bcs">
+              <ul class="nav flex-column sub-menu">
+
+                <li class="nav-item"> <a class="nav-link" href="{{ route('pharmacien.listeBonsDeCommande') }}"> <span class="mdi mdi-list-box"></span>Bons de commande
+                  </a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{route('ordonnances.pharmacien')}}"> <span class="mdi mdi-list-box"></span>Ordonnances
+                  </a></li>
+              </ul>
+            </div>
           </li>
+
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('ordonnances.pharmacien')  }}">
-              liste des Ordonnances
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ route('pharmacien.listebonlivraison')  }}">
+            <a class="nav-link" href="{{ route('pharmacien.listebonlivraison')  }}"><span class="mdi mdi-file"></span>
               liste bons livraison
             </a>
           </li>
+          <!--  -->
+
+
+
           <li class="nav-item">
             <a class="nav-link" href="{{route('getAdminLogout')}}">
               <i class="mdi mdi-logout"></i>
@@ -604,19 +626,19 @@
                 <form action="{{ route('bon_commande_service.store') }}" method="POST">
                   @csrf
                   <input type="hidden" id="id_phar" name="id_phar" value="{{ $idPharmacien }}">
-                  <div class="form-group row">
-                    <div class="form-group row">
-                      <label class="col-form-label col-sm-2" >Service:</label>
-                      <div class="col-sm-10">
-                        <p class="form-control-plaintext">{{ Auth::user()->doctor->service->nom_service }}</p>
-                        <input type="hidden" id="service_id" name="service_id" value="{{ Auth::user()->doctor->service->id }}">
-                      </div>
-                    </div>
 
-                  </div>
-                  <div class="form-group row" style="margin-top: 24px;">
-                    <label for="id_doc" class="col-form-label col-sm-2">Doctor:</label>
+                  <div class="form-group row">
+                    <label class="col-form-label col-sm-1" style="margin-top: 12px;">Service:</label>
                     <div class="col-sm-10">
+                      <p class="form-control-plaintext">{{ Auth::user()->doctor->service->nom_service }}</p>
+                      <input type="hidden" id="service_id" name="service_id" value="{{ Auth::user()->doctor->service->id }}">
+                    </div>
+                  </div>
+
+
+                  <div class="form-group row" style="margin-top: 5px;">
+                    <label for="id_doc" class="col-form-label col-sm-1">Doctor:</label>
+                    <div class="col-sm-10" style="margin-top: 5px;">
                       <select class="form-control short-input" name="id_doc" required>
                         @foreach($doctors as $doctor)
                         <option value="{{ $doctor->id }}">{{ $doctor->user->name }}</option>
@@ -650,13 +672,14 @@
                         <label for="quantite_restante" class="col-form-label">Quantité Restante:</label>
                         <input type="number" class="form-control" name="lignes[0][quantite_restante]" required>
                       </div>
+
                       <!-- <div class="col-sm-3">
                                                 <span class="text-danger croix" onclick="supprimerLigne(this)">✖</span>
                                             </div> -->
                     </div>
                   </div>
 
-                  <button type="button" class="btn " onclick="ajouterLigne()">Ajouter une ligne</button>
+                  <button type="button" class="btn btn-primary btn-sm " onclick="ajouterLigne()">Ajouter une ligne</button>
                   <button type="submit" class="btn btn-primary">Envoyer</button>
                 </form>
               </div>
@@ -678,7 +701,7 @@
         </div>
         <!-- main-panel ends -->
       </div>
-      <!-- page-body-wrapper ends -->
+
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
@@ -732,6 +755,12 @@
 
         return newLigne;
       }
+
+      function supprimerLigne(element) {
+        const ligne = element.closest('.ligne');
+        ligne.remove();
+      }
+
       // Select2 pour les champs DCI dans les lignes de bon de commande
       $('select[name^="lignes["][name$="][id_dci]"]').select2({
         placeholder: "Sélectionnez une DCI",
@@ -741,7 +770,17 @@
 
 
 
-
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+<script src="vendors/js/vendor.bundle.base.js"></script>
+<script src="vendors/datatables.net/jquery.dataTables.js"></script>
+<script src="vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+<script src="js/off-canvas.js"></script>
+<script src="js/hoverable-collapse.js"></script>
+<script src="js/misc.js"></script>
+<script src="js/settings.js"></script>
+<script src="js/todolist.js"></script>
+<script src="js/data-table.js"></script>
 </body>
 
 <!-- Mirrored from demo.bootstrapdash.com/xollo/template/demo_1/pages/forms/basic_elements.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 16 May 2024 22:42:47 GMT -->

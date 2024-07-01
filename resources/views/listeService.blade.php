@@ -32,8 +32,8 @@
 <body>
   <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->
-    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-      <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row" style="background-color: #d3d3d3">
+        <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
         {{-- <a class="navbar-brand brand-logo">MediCare</a> --}}
         <img src="/images/logog3.png" alt="" width="90px">
         {{-- <a class="navbar-brand brand-logo-mini" style="color: black">MediCare</a> --}}
@@ -166,7 +166,7 @@
             </div>
             <ul class="chat-list">
               <li class="list active">
-                <div class="profile"><img src="../../../assets/images/faces/face1.jpg" alt="image"><span class="online"></span></div>
+                <div class="profile"><img src="images/faces/face1.jpg" alt="image"><span class="online"></span></div>
                 <div class="info">
                   <p>Thomas Douglas</p>
                   <p>Available</p>
@@ -174,7 +174,7 @@
                 <small class="text-muted my-auto">19 min</small>
               </li>
               <li class="list">
-                <div class="profile"><img src="../../../assets/images/faces/face2.jpg" alt="image"><span class="offline"></span></div>
+                <div class="profile"><img src="images/faces/face2.jpg" alt="image"><span class="offline"></span></div>
                 <div class="info">
                   <div class="wrapper d-flex">
                     <p>Catherine</p>
@@ -185,7 +185,7 @@
                 <small class="text-muted my-auto">23 min</small>
               </li>
               <li class="list">
-                <div class="profile"><img src="../../../assets/images/faces/face3.jpg" alt="image"><span class="online"></span></div>
+                <div class="profile"><img src="images/faces/face3.jpg" alt="image"><span class="online"></span></div>
                 <div class="info">
                   <p>Daniel Russell</p>
                   <p>Available</p>
@@ -193,7 +193,7 @@
                 <small class="text-muted my-auto">14 min</small>
               </li>
               <li class="list">
-                <div class="profile"><img src="../../../assets/images/faces/face4.jpg" alt="image"><span class="offline"></span></div>
+                <div class="profile"><img src="images/faces/face4.jpg" alt="image"><span class="offline"></span></div>
                 <div class="info">
                   <p>James Richardson</p>
                   <p>Away</p>
@@ -201,7 +201,7 @@
                 <small class="text-muted my-auto">2 min</small>
               </li>
               <li class="list">
-                <div class="profile"><img src="../../../assets/images/faces/face5.jpg" alt="image"><span class="online"></span></div>
+                <div class="profile"><img src="images/faces/face5.jpg" alt="image"><span class="online"></span></div>
                 <div class="info">
                   <p>Madeline Kennedy</p>
                   <p>Available</p>
@@ -209,7 +209,7 @@
                 <small class="text-muted my-auto">5 min</small>
               </li>
               <li class="list">
-                <div class="profile"><img src="../../../assets/images/faces/face6.jpg" alt="image"><span class="online"></span></div>
+                <div class="profile"><img src="images/faces/face6.jpg" alt="image"><span class="online"></span></div>
                 <div class="info">
                   <p>Sarah Graves</p>
                   <p>Available</p>
@@ -226,10 +226,28 @@
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav nav-height">
           <li class="nav-item nav-profile">
+            @if(Auth::check() && Auth::user()->admin)
+
             <span class="nav-link" href="#">
+              <div class="profile-image online">
+                <img src="images/faces/admina.jpg" />
+              </div>
               <p> Bienvenue {{ Auth::user()->name }} </p>
               <p> {{ Auth::user()->email }} </p>
+
             </span>
+            @endif
+            @if(Auth::check() && Auth::user()->chiefpharmacist)
+            <span class="nav-link" href="#">
+              <div class="profile-image online">
+                <img src="images/faces/icone2.jpg" />
+              </div>
+              <p> Bienvenue {{ Auth::user()->name }} </p>
+              <p> {{ Auth::user()->email }} </p>
+
+            </span>
+            @endif
+
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{{route('acceuil')}}">
@@ -238,11 +256,11 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link">
-              <span class="mdi mdi-view-dashboard"></span>
-              <span class="menu-title">Dashboard</span>
+            <a class="nav-link" href="{{route('getDashboard')}}">
+                <span class="mdi mdi-view-dashboard"></span>
+                <span class="menu-title">Dashboard</span>
             </a>
-          </li>
+        </li>
           @if(Auth::check() && Auth::user()->admin)
           <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#users" aria-expanded="false" aria-controls="sidebar-layouts">
@@ -299,17 +317,12 @@
             <div class="collapse" id="dci">
               <ul class="nav flex-column sub-menu">
 
-                <li class="nav-item"> <a class="nav-link" href="">Liste DCI</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{route('liste_dci')}}">Liste DCI</a></li>
                 <li class="nav-item"> <a class="nav-link" href="{{route('getDCI')}}">Ajouter DCI</a></li>
               </ul>
             </div>
           </li>
-          <li class="nav-item">
-            <a class="nav-link">
-              <span class="mdi mdi-account"></span>
-              <span class="menu-title">Profile</span>
-            </a>
-          </li>
+
           <li class="nav-item">
             <a class="nav-link" href="{{route('getAdminLogout')}}">
               <i class="mdi mdi-logout"></i>
@@ -317,7 +330,6 @@
             </a>
           </li>
           @endif
-          
           @if(Auth::check() && (Auth::user()->chiefPharmacist()->exists()))
           <li class="nav-item"> <a class="nav-link" href="{{route('listeServices')}}"><span class="mdi mdi-office-building"></span>Liste des services</a></li>
           <li class="nav-item"> <a class="nav-link" href="{{route('getUsers')}}"><span class="mdi mdi-account-group"></span>Liste des utilisateurs</a></li>
@@ -348,7 +360,7 @@
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="{{route('listeBonsReception')}}"> <span class="mdi mdi-list-box">Liste des Bons</span></a></li>
 
-                <li class="nav-item"> <a class="nav-link" href=""> <span class="mdi mdi-note-plus">nouveau Bon</span></a></li>
+                {{-- <li class="nav-item"> <a class="nav-link" href=""> <span class="mdi mdi-note-plus">nouveau Bon</span></a></li> --}}
                 {{--
                                 <form action="{{ route('bonCR', $bonCommande->id) }}" method="GET">
                 <button type="submit" class="btn btn-primary" style="margin-top: 5px;">Réceptionner</button>
@@ -380,6 +392,9 @@
             </a>
           </li>
           <!--  -->
+
+
+
           <li class="nav-item">
             <a class="nav-link" href="{{route('getAdminLogout')}}">
               <i class="mdi mdi-logout"></i>
@@ -387,6 +402,8 @@
             </a>
           </li>
           @endif
+
+
 
 
         </ul>
@@ -398,11 +415,13 @@
           <div class="card">
             <div class="card-body">
               <div class="card-header text-center bg-white">
-                <h4 class="card-title">Liste Services</h4>
+                <h4 class="card-title">Liste des services</h4>
               </div>
               <div class="row">
-                <div class="col-12">
-                  <table id="order-listing" class="table">
+                                    <div class="col-12">
+                        <input type="text" id="searchInput" class="form-control" placeholder="Rechercher" onkeyup="filterTable()">
+                    </div>
+                  <table id="services" class="table">
                     <thead>
                       <tr>
                         <th>ID</th>
@@ -525,6 +544,16 @@
   <!-- plugins:js -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+  <script>
+     $(document).ready(function() {
+    $('#searchInput').on('keyup', function() {
+      var value = $(this).val().toLowerCase();
+      $('#services tbody tr').filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+  });
+</script>
 
   <script>
     // Afficher la modal avec l'ID du service
@@ -562,21 +591,21 @@
     }
   </script>
 
-  <script src="../../../assets/vendors/js/vendor.bundle.base.js"></script>
+  <script src="vendors/js/vendor.bundle.base.js"></script>
   <!-- endinject -->
   <!-- Plugin js for this page -->
-  <script src="../../../assets/vendors/datatables.net/jquery.dataTables.js"></script>
-  <script src="../../../assets/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+  <script src="vendors/datatables.net/jquery.dataTables.js"></script>
+  <script src="vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
   <!-- End plugin js for this page -->
   <!-- inject:js -->
   <script src="js/off-canvas.js"></script>
-  <script src="assets/js/hoverable-collapse.js"></script>
-  <script src="assets/js/misc.js"></script>
-  <script src="assets/js/settings.js"></script>
-  <script src="assets/js/todolist.js"></script>
+  <script src="js/hoverable-collapse.js"></script>
+  <script src="js/misc.js"></script>
+  <script src="js/settings.js"></script>
+  <script src="js/todolist.js"></script>
   <!-- endinject -->
   <!-- Custom js for this page -->
-  <script src="assets/js/data-table.js"></script>
+  <script src="js/data-table.js"></script>
   <!-- End custom js for this page -->
 
   <!-- jQuery -->

@@ -29536,8 +29536,8 @@ dl li {
 /* === Landing screens === */
 /* Auth */
 .auth.login-full-bg {
-  background: url("../../images/auth/auth.jpg");
-  background-size: cover;
+    background: url("../../images/medical-espace-copie.jpg");
+    background-size: cover;
 }
 
 .auth .login-half-bg {
@@ -29567,13 +29567,22 @@ dl li {
 }
 
 .auth .auth-form-dark {
-  background-color: rgba(17, 182, 159, 0.7);
+  background-color:  #52d1b74D;
   border: 1px solid #ccc;
   padding: 20px;
   border-radius: 25px;
-  margin-left: 40%;
+  margin-left: 0.1px;
   width: 500px;
 }
+/* .auth .auth-form-dark {
+    background-color: #52d1b74D;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 25px;
+
+    margin-left: 5%;
+    width: 500px;
+  } */
 
 .auth .auth-form-dark .form-control,
 .auth .auth-form-dark .asColorPicker-input,
@@ -29594,7 +29603,7 @@ dl li {
 .auth .auth-form-dark .tt-hint {
   border-color: rgba(255, 255, 255, 0.2);
   color: #ffff;
- 
+
 }
 
 .auth .auth-form-dark .form-control:-ms-input-placeholder,

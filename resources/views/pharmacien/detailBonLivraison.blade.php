@@ -25,6 +25,16 @@
         .form-group.row {
             align-items: center;
         }
+
+        @media print {----
+
+            .navbar,
+            .sidebar,
+            .footer,
+            .btn {
+                display: none !important;
+            }
+        }
     </style>
 
 </head>
@@ -32,8 +42,8 @@
 <body>
     <div class="container-scroller">
         <!-- partial:../../partials/_navbar.html -->
-        <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-            <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+        <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row" style="background-color: #d3d3d3">
+        <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
                 {{-- <a class="navbar-brand brand-logo" href="../../index.html"><img src="https://demo.bootstrapdash.com/xollo/template/assets/images/logo.svg" alt="logo" /></a>
             <a class="navbar-brand brand-logo-mini" href="../../index.html"><img src="https://demo.bootstrapdash.com/xollo/template/assets/images/logo-mini.svg" alt="logo" /></a> --}}
                 <img src="/images/logog3.png" alt="" width="90px">
@@ -274,6 +284,16 @@
                       <i class="mdi mdi-gmail me-3"></i>
                       <i class="mdi mdi-account"></i>
                     </div> --}}
+                        </span>
+                        @endif
+                        @if(Auth::check() && Auth::user()->chiefpharmacist)
+                        <span class="nav-link" href="#">
+                          <div class="profile-image online">
+                            <img src="images/faces/icone2.jpg" />
+                          </div>
+                          <p> Bienvenue {{ Auth::user()->name }} </p>
+                          <p> {{ Auth::user()->email }} </p>
+
                         </span>
                         @endif
 
@@ -613,9 +633,9 @@
                                                     <th>ID DCI</th>
                                                     <th>DCI / Forme / Dosage</th>
                                                     <th>date peremp</th>
-                                                    <th>Quantité Demandée</th>
-                                                    <th>Quantité Livrée</th>
-                                                    <th>Quantité Restante</th>
+                                                    <th>Quant Demandé</th>
+                                                    <th>Quant Livré</th>
+                                                    <th>Quant Restante</th>
                                                     <th>Prix_Unit</th>
                                                     <th>Montant</th>
                                                 </tr>
@@ -654,6 +674,7 @@
 
                         </div>
                     </div>
+                    <button type="button" class="btn btn-primary btn-sm float-right no-print" onclick="window.print()">Imprimer</button>
 
 
                 </div>
@@ -698,10 +719,31 @@
     <script src="js/misc.js"></script>
     <script src="js/settings.js"></script>
     <script src="js/todolist.js"></script>
+    <script src="vendors/js/vendor.bundle.base.js"></script>
+<!-- endinject -->
+<!-- Plugin js for this page -->
+<script src="vendors/datatables.net/jquery.dataTables.js"></script>
+<script src="vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+<!-- End plugin js for this page -->
+<!-- inject:js -->
+<script src="js/off-canvas.js"></script>
+<script src="js/hoverable-collapse.js"></script>
+<script src="js/misc.js"></script>
+<script src="js/settings.js"></script>
+<script src="js/todolist.js"></script>
+<!-- endinject -->
+<!-- Custom js for this page -->
+<script src="js/data-table.js"></script>
     <!-- endinject -->
     <!-- Custom js for this page -->
-    <script src="js/data-table.js"></script>
+    {{-- <script src="js/data-table.js"></script> --}}
     <!-- End custom js for this page -->
+    <script>
+        // Fonction pour lancer l'impression
+        function printBonDeCommande() {
+            window.print();
+        }
+    </script>
 
 </body>
 

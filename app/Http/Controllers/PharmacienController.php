@@ -96,7 +96,7 @@ class PharmacienController extends Controller
 
     public function listeBonsDeCommandeFournisseur()
     {
-        
+
     // Récupérer les bons de commande avec l'état de réception
     $bonsCommande = BonCommandeFournisseur::with('lignesBCF')
     ->get()
@@ -182,11 +182,12 @@ class PharmacienController extends Controller
         //      $idPhar = $Pharmacien->id;
         //      $chefpharmaciens = ChiefPharmacist::all();
         //      $idChefPharmacien = $chefpharmaciens->first()->id; // Choisir le premier nom commercial comme valeur par défaut, par exemple
+//dd(NomCommercial::where('id_dci',1)->get());
         $date_reception = Carbon::now();
         $nomsCommerciaux = NomCommercial::all();
         $dcis = Dci::all();
         $bonCommande = BonCommandeFournisseur::with('lignesBCF.dci.nomCommercial')->findOrFail($id_bcf);
-
+// dd($bonCommande);
         return view('AjouterBR', compact('bonCommande', 'date_reception', 'idPhar', 'idChefPharmacien', 'dcis', 'nomsCommerciaux'));
     }
 

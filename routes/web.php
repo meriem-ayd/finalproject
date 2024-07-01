@@ -70,12 +70,12 @@ Route::middleware(['userMiddleware'])->group(function () {
 
         Route::get('/ordonnance', [MedecinController::class, 'create'])->name('ordonnance.create');
         Route::post('/ordonnance', [MedecinController::class, 'store'])->name('ordonnance.store');
-        Route::put('/ordonnances/{id}', [MedecinController::class, 'updateord'])->name('updateord');
+        Route::put('/ordonnances-{id}', [MedecinController::class, 'updateord'])->name('updateord');
 
         Route::get('/listeordonnance', [MedecinController::class, 'listeOrdonnances'])->name('ordonnance.liste');
-        Route::get('/ordonnances/{id}', [MedecinController::class, 'show'])->name('ordonnances');
-        Route::get('/medecin/bon-livraison', [MedecinController::class, 'listeBonsDeLivraison'])->name('medecin.bonsDeLivraison');
-        Route::get('/medecin/bon-livraison/{id}', [MedecinController::class, 'showBonLivraison'])->name('medecin.showBonLivraison');
+        Route::get('/ordonnances-{id}', [MedecinController::class, 'show'])->name('ordonnances');
+        Route::get('/medecin-bon-livraison', [MedecinController::class, 'listeBonsDeLivraison'])->name('medecin.bonsDeLivraison');
+        Route::get('/medecin-bon-livraison-{id}', [MedecinController::class, 'showBonLivraison'])->name('medecin.showBonLivraison');
     });
 
     Route::middleware(['pharmacist'])->group(function () {
@@ -86,7 +86,7 @@ Route::middleware(['userMiddleware'])->group(function () {
         Route::post('/AjouterBCF', [PharmacienController::class, 'createBonCommandeFournisseur'])->name('createBonCommandeFournisseur');
         //details du bondecommandefournisseur
         Route::get('/listeBCF', [PharmacienController::class, 'listeBonsDeCommandeFournisseur'])->name('listeBonsDeCommandeFournisseur');
-        Route::get('/DetailsBCF/{id}', [PharmacienController::class, 'details'])->name('details');
+        Route::get('/DetailsBCF-{id}', [PharmacienController::class, 'details'])->name('details');
 
         Route::put('/update-bon/{id}', [PharmacienController::class, 'update'])->name('updateBon');
         Route::post('/updateBCF/{id}', [PharmacienController::class, 'updateBCF'])->name('updateBCF');
@@ -96,8 +96,8 @@ Route::middleware(['userMiddleware'])->group(function () {
         Route::post('/etat-stock', [DciController::class, 'getEtatStock'])->name('getEtatStock');
 
         //bondereception
-        Route::get('/AjouterBR/{id_bcf}', [PharmacienController::class, 'bonCR'])->name('bonCR');
-        Route::post('/AjouterBR/{id_bcf}', [PharmacienController::class, 'createBonCommandeReception'])->name('createBonCommandeReception');
+        Route::get('/AjouterBR-{id_bcf}', [PharmacienController::class, 'bonCR'])->name('bonCR');
+        Route::post('/AjouterBR-{id_bcf}', [PharmacienController::class, 'createBonCommandeReception'])->name('createBonCommandeReception');
         Route::get('listeBR', [PharmacienController::class, 'listeBonsReception'])->name('listeBonsReception');
 
         //
@@ -107,12 +107,12 @@ Route::middleware(['userMiddleware'])->group(function () {
 
 
         Route::get('/liste-bons-de-commande', [PharmacienController::class, 'listeTousBonsDeCommande'])->name('pharmacien.listeBonsDeCommande');
-        Route::get('/consultbc/{id}', [PharmacienController::class, 'getbc'])->name('getbc');
-        Route::get('/bon-livraison/{id_bcs}', [PharmacienController::class, 'create'])->name('bonlivraison.create');
+        Route::get('/consultbc-{id}', [PharmacienController::class, 'getbc'])->name('getbc');
+        Route::get('/bon-livraison-{id_bcs}', [PharmacienController::class, 'create'])->name('bonlivraison.create');
         Route::post('/bon-livraison', [PharmacienController::class, 'store'])->name('bonlivraison.store');
         // liste et details
-        Route::get('/pharmacien/listebonlivraison', [PharmacienController::class, 'listeBonsDeLivraison'])->name('pharmacien.listebonlivraison');
-        Route::get('/bonlivraison/{id}', [PharmacienController::class, 'show'])->name('show');
+        Route::get('/pharmacien-listebonlivraison', [PharmacienController::class, 'listeBonsDeLivraison'])->name('pharmacien.listebonlivraison');
+        Route::get('/bonlivraison-{id}', [PharmacienController::class, 'show'])->name('show');
 
         // ordonnance
         Route::get('/liste-ordonnances-pharmacien', [PharmacienController::class, 'listeOrdonnancesPharmacien'])->name('ordonnances.pharmacien');
@@ -140,12 +140,12 @@ Route::middleware(['userMiddleware'])->group(function () {
         Route::post('/AjouterBCF', [PharmacienController::class, 'createBonCommandeFournisseur'])->name('createBonCommandeFournisseur');
         //details du bondecommandefournisseur
         Route::get('/listeBCF', [PharmacienController::class, 'listeBonsDeCommandeFournisseur'])->name('listeBonsDeCommandeFournisseur');
-        Route::get('/DetailsBCF/{id}', [PharmacienController::class, 'details'])->name('details');
+        Route::get('/DetailsBCF-{id}', [PharmacienController::class, 'details'])->name('details');
         Route::post('/bon-commande-fournisseur/{id}/valider', [PharmacienController::class, 'validerBonCommandeFournisseur'])->name('validerBCF');
 
         //bondereception
-        Route::get('/AjouterBR/{id_bcf}', [PharmacienController::class, 'bonCR'])->name('bonCR');
-        Route::post('/AjouterBR/{id_bcf}', [PharmacienController::class, 'createBonCommandeReception'])->name('createBonCommandeReception');
+        Route::get('/AjouterBR-{id_bcf}', [PharmacienController::class, 'bonCR'])->name('bonCR');
+        Route::post('/AjouterBR-{id_bcf}', [PharmacienController::class, 'createBonCommandeReception'])->name('createBonCommandeReception');
         Route::get('listeBR', [PharmacienController::class, 'listeBonsReception'])->name('listeBonsReception');
 
         //
@@ -153,12 +153,12 @@ Route::middleware(['userMiddleware'])->group(function () {
 
 
         Route::get('/liste-bons-de-commande', [PharmacienController::class, 'listeTousBonsDeCommande'])->name('pharmacien.listeBonsDeCommande');
-        Route::get('/consultbc/{id}', [PharmacienController::class, 'getbc'])->name('getbc');
-        Route::get('/bon-livraison/{id_bcs}', [PharmacienController::class, 'create'])->name('bonlivraison.create');
+        Route::get('/consultbc-{id}', [PharmacienController::class, 'getbc'])->name('getbc');
+        Route::get('/bon-livraison-{id_bcs}', [PharmacienController::class, 'create'])->name('bonlivraison.create');
         Route::post('/bon-livraison', [PharmacienController::class, 'store'])->name('bonlivraison.store');
         // liste et details
-        Route::get('/pharmacien/listebonlivraison', [PharmacienController::class, 'listeBonsDeLivraison'])->name('pharmacien.listebonlivraison');
-        Route::get('/bonlivraison/{id}', [PharmacienController::class, 'show'])->name('show');
+        Route::get('/pharmacien-listebonlivraison', [PharmacienController::class, 'listeBonsDeLivraison'])->name('pharmacien.listebonlivraison');
+        Route::get('/bonlivraison-{id}', [PharmacienController::class, 'show'])->name('show');
 
         // ordonnance
         Route::get('/liste-ordonnances-pharmacien', [PharmacienController::class, 'listeOrdonnancesPharmacien'])->name('ordonnances.pharmacien');

@@ -90,22 +90,22 @@ class MedecinController extends Controller
     public function listeBonsDeCommandeMedecin()
     {
         $user = auth()->user();
-    
+
         if ($user->doctor) {
             // Récupérer l'ID du service de l'utilisateur connecté
             $serviceId = $user->doctor->service->id;
-    
+
             // Récupérer les bons de commande pour le service de l'utilisateur connecté
             $bonsDeCommande = BonCommandeService::where('service_id', $serviceId)
                 ->with('lignes.nomCommercial.dci', 'medecin.user', 'service')
                 ->get();
-    
+
             return view('liste', compact('bonsDeCommande'));
         } else {
             return redirect()->back()->with('error', 'Vous n\'êtes pas autorisé à accéder à cette page.');
         }
     }
-    
+
     // details
 
     public function getbon($id)
@@ -176,7 +176,7 @@ class MedecinController extends Controller
             'age' => 'required|integer',
             'date' => 'required|date',
             // 'service' => 'required|exists:services,id',
-            
+
             'quantite_demandee' => 'required|array',
             'quantite_demandee.*' => 'required|integer|min:1',
             'posologie' => 'required|array',
@@ -185,6 +185,7 @@ class MedecinController extends Controller
             'duree.*' => 'required|string',
             'dci' => 'required|array',
             'dci.*' => 'required|exists:dci,id',
+
         ]);
 
         if ($user->doctor) {
@@ -198,8 +199,8 @@ class MedecinController extends Controller
                 'age' => $request->input('age'),
                 'id_bcs' => $firstBcsId,
                 'date' => $request->input('date'),
-                'service_id' => $user->doctor->service->id, // Utiliser le service de l'utilisateur authentifié
-                'id_doc' => $user->doctor->id,
+                'service_id' => $request->input('service_id'), // Utiliser le service de l'utilisateur authentifié
+                'id_doc' => $request->input('id_doc'),
             ]);
 
             $ordonnance->save();
@@ -291,9 +292,15 @@ class MedecinController extends Controller
 
         // Vérifiez si l'utilisateur est un médecin
         if ($user->doctor) {
-            $idMedecin = $user->doctor->id;
+            $serviceId = $user->doctor->service->id;
+
+            // Récupérer les bons de commande pour le service de l'utilisateur connecté
+            $bonsDeCommande = BonCommandeService::where('service_id', $serviceId)
+                ->with('lignes.nomCommercial.dci', 'medecin.user', 'service')
+                ->get();
+            $idMedecin = $user->doctor->service->id;
             $dcis = Dci::all();
-            $ordonnances = Ordonnance::where('id_doc', $idMedecin)
+            $ordonnances = Ordonnance::where('service_id', $idMedecin)
                 ->with('lignes.nomCommercial.dci') // Chargez les relations nécessaires
                 ->get();
 

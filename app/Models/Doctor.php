@@ -31,4 +31,5 @@ class Doctor extends Model
         return $this->belongsTo(Service::class);
 
     }
+    
 }

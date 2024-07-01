@@ -48,7 +48,7 @@
 <body>
   <div class="container-scroller">
     <!-- partial:../../partials/_navbar.html -->
-    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row" style="background-color: #d3d3d3">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
         {{-- <a class="navbar-brand brand-logo" href="../../index.html"><img src="https://demo.bootstrapdash.com/xollo/template/assets/images/logo.svg" alt="logo" /></a>
             <a class="navbar-brand brand-logo-mini" href="../../index.html"><img src="https://demo.bootstrapdash.com/xollo/template/assets/images/logo-mini.svg" alt="logo" /></a> --}}
@@ -290,6 +290,16 @@
                       <i class="mdi mdi-gmail me-3"></i>
                       <i class="mdi mdi-account"></i>
                     </div> --}}
+            </span>
+            @endif
+            @if(Auth::check() && Auth::user()->chiefpharmacist)
+            <span class="nav-link" href="#">
+              <div class="profile-image online">
+                <img src="images/faces/icone2.jpg" />
+              </div>
+              <p> Bienvenue {{ Auth::user()->name }} </p>
+              <p> {{ Auth::user()->email }} </p>
+
             </span>
             @endif
 
@@ -541,7 +551,7 @@
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="{{route('listeBonsReception')}}"> <span class="mdi mdi-list-box">Liste des Bons</span></a></li>
 
-                <li class="nav-item"> <a class="nav-link" href=""> <span class="mdi mdi-note-plus">nouveau Bon</span></a></li>
+                {{-- <li class="nav-item"> <a class="nav-link" href=""> <span class="mdi mdi-note-plus">nouveau Bon</span></a></li> --}}
                 {{--
                                 <form action="{{ route('bonCR', $bonCommande->id) }}" method="GET">
                 <button type="submit" class="btn btn-primary" style="margin-top: 5px;">Réceptionner</button>
@@ -573,6 +583,9 @@
             </a>
           </li>
           <!--  -->
+
+
+
           <li class="nav-item">
             <a class="nav-link" href="{{route('getAdminLogout')}}">
               <i class="mdi mdi-logout"></i>
@@ -580,8 +593,6 @@
             </a>
           </li>
           @endif
-
-
         </ul>
       </nav>
       <!-- partial -->
@@ -710,7 +721,7 @@
   <script src="js/todolist.js"></script>
   <!-- endinject -->
   <!-- Custom js for this page -->
-  <script src="js/data-table.js"></script>
+  {{-- <script src="js/data-table.js"></script> --}}
   <!-- End custom js for this page -->
 
 </body>

@@ -18,13 +18,13 @@
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-  
+
 </head>
 
 <body>
     <div class="container-scroller">
         <!-- partial:partials/_navbar.html -->
-        <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+        <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row" style="background-color: #d3d3d3">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
                 {{-- <a class="navbar-brand brand-logo">MediCare</a> --}}
                 <img src="/images/logog3.png" alt="" width="90px">
@@ -217,14 +217,19 @@
             <!-- partial:partials/_sidebar.html -->
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
                 <ul class="nav nav-height">
-                    <li class="nav-item nav-profile">
-                        <span class="nav-link" href="#">
-                            <p> Bienvenue {{ Auth::user()->name }} </p>
+                  <li class="nav-item nav-profile">
+                    @if(Auth::check() && Auth::user()->admin)
 
-                            <p> {{ Auth::user()->email }} </p>
+                    <span class="nav-link" href="#">
+                      <div class="profile-image online">
+                        <img src="images/faces/admina.jpg" />
+                      </div>
+                      <p> Bienvenue {{ Auth::user()->name }} </p>
+                      <p> {{ Auth::user()->email }} </p>
 
-                        </span>
-                    </li>
+                    </span>
+                    @endif
+
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('acceuil')}}">
                             <span class="mdi mdi-home"></span>
@@ -232,7 +237,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link">
+                        <a class="nav-link" href="{{route('getDashboard')}}">
                             <span class="mdi mdi-view-dashboard"></span>
                             <span class="menu-title">Dashboard</span>
                         </a>
@@ -302,12 +307,7 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link">
-                            <span class="mdi mdi-account"></span>
-                            <span class="menu-title">Profile</span>
-                        </a>
-                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('getAdminLogout')}}">
                             <i class="mdi mdi-logout"></i>
@@ -345,7 +345,7 @@
                                         @csrf
                                         <div class="form-group row">
                                             <div class="col-lg-2">
-                                                <label class="col-form-label">Nom</label>
+                                                <label class="col-form-label">Nom et prénom</label>
                                             </div>
                                             <div class="col-lg-10">
                                                 <input class="form-control" maxlength="255" name="name" id="defaultconfig" type="text" placeholder="">
@@ -356,7 +356,7 @@
                                                 @endif
                                             </div>
                                         </div>
-                                       
+
                                         <div class="form-group row">
                                             <div class="col-lg-2">
                                                 <label class="col-form-label"> Numéro de téléphone</label>
@@ -442,8 +442,37 @@
             $('select[name="service"]').select2();
         });
     </script>
+
+  <script src="vendors/js/vendor.bundle.base.js"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page -->
+  <script src="vendors/datatables.net/jquery.dataTables.js"></script>
+  <script src="vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+  <!-- End plugin js for this page -->
+  <!-- inject:js -->
+  <script src="js/off-canvas.js"></script>
+  <script src="js/hoverable-collapse.js"></script>
+  <script src="js/misc.js"></script>
+  <script src="js/settings.js"></script>
+  <script src="js/todolist.js"></script>
+  <!-- endinject -->
+  <!-- Custom js for this page -->
+  <script src="js/data-table.js"></script>
+  <!-- End custom js for this page -->
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <!-- Bootstrap JS -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
 </body>
+
+<!-- Mirrored from demo.bootstrapdash.com/xollo/template/demo_1/pages/tables/data-table.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 16 May 2024 22:43:12 GMT -->
+
+</html>
+
+
 
 <!-- Mirrored from demo.bootstrapdash.com/xollo/template/demo_1/pages/forms/validation.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 16 May 2024 22:42:58 GMT -->
 
-</html>
+

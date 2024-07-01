@@ -19,7 +19,7 @@ class Ordonnance extends Model
         'age',
         'date',
         'id_doc',
-        'num_ordo', 'etat',
+        'num_ordo', 'etat','service_id',
 
     ];
 

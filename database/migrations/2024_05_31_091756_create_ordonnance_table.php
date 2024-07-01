@@ -12,21 +12,28 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('ordonnance', function (Blueprint $table) {
-            $table->id();  
-            $table->unsignedBigInteger('id_bcs')->nullable();   
-            $table->string('nom_patient', 55);  
-            $table->string('prenom_patient', 55);  
-            $table->integer('age'); 
-            $table->date('date'); 
-            $table->timestamps();     
+            $table->id();
+            $table->unsignedBigInteger('id_bcs')->nullable();
+            $table->string('nom_patient', 55);
+            $table->string('prenom_patient', 55);
+            $table->integer('age');
+            $table->date('date');
+            $table->unsignedBigInteger('service_id');
+
+            $table->timestamps();
             $table->foreign('id_bcs')
                   ->references('id')
                   ->on('bon_commande_service')
                   ->onDelete('cascade');
+
+                  $table->foreign('service_id')
+                  ->references('id')
+                  ->on('services')
+                  ->onDelete('cascade');
         });
     }
 
-   
+
     public function down(): void
     {
         Schema::dropIfExists('ordonnance');

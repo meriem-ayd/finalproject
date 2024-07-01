@@ -50,7 +50,7 @@
 <body>
 <div class="container-scroller">
         <!-- partial:../../partials/_navbar.html -->
-        <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+        <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row" style="background-color: #d3d3d3">
           <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
             {{-- <a class="navbar-brand brand-logo" href="../../index.html"><img src="https://demo.bootstrapdash.com/xollo/template/assets/images/logo.svg" alt="logo" /></a>
             <a class="navbar-brand brand-logo-mini" href="../../index.html"><img src="https://demo.bootstrapdash.com/xollo/template/assets/images/logo-mini.svg" alt="logo" /></a> --}}
@@ -70,10 +70,10 @@
               </div>
             </form>
             <ul class="navbar-nav navbar-nav-right">
-            
-             
-             
-           
+
+
+
+
               <li class="nav-item nav-item-highlight d-flex">
                 <a class="nav-link" href="{{route('getAdminLogout')}}">
                   <i class="mdi mdi-logout"></i>
@@ -418,10 +418,10 @@
                             </ul>
                         </div>
                     </li>
-                 
-                  
-                  
-                  
+
+
+
+
                     <!-- <li class="nav-item">
                         <a class="nav-link" href="{{route('pharmacien.listeBonsDeCommande')}}">
                             <i class="mdi mdi-file"></i>
@@ -464,7 +464,7 @@
                         <span class="mdi mdi-list-box">Liste Bons Réception </span>
                         </a>
                     </li>
-                   
+
                     <li class="nav-item"> <a class="nav-link" href="{{route('showEtatStockForm')}}"><span class="mdi mdi-note-plus"></span>Etat de Stock</a></li>
 
 
@@ -593,7 +593,7 @@
                 <div class="content-wrapper">
                     <div class="page-header">
 
-                        
+
                     </div>
                     <div class="page-header mb-3 text-center">
                         <h3 class="page-title"> État du Stock </h3>
@@ -657,7 +657,7 @@
 
     <!-- partial -->
     <!-- partial:../../partials/_footer.html -->
-    
+
     <!-- partial -->
     </div>
     <!-- main-panel ends -->
