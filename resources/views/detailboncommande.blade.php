@@ -278,8 +278,9 @@
               <div class="profile-image online">
                 <img src="images/faces/icone2.jpg" />
               </div>
-              <p> Bienvenue {{ Auth::user()->name }} </p>
-              <p> {{ Auth::user()->email }} </p>
+              <p> Bienvenue
+                <hr>{{ Auth::user()->name }} </p>
+              {{-- <p> {{ Auth::user()->email }} </p> --}}
 
             </span>
             @endif

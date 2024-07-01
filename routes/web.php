@@ -151,6 +151,8 @@ Route::middleware(['userMiddleware'])->group(function () {
         //
         Route::get('/DetailsBCR/{id}', [PharmacienController::class, 'detailsBR'])->name('detailsBR');
 
+        Route::get('/etat-stock-form', [DciController::class, 'showEtatStockForm'])->name('showEtatStockForm');
+        Route::post('/etat-stock', [DciController::class, 'getEtatStock'])->name('getEtatStock');
 
         Route::get('/liste-bons-de-commande', [PharmacienController::class, 'listeTousBonsDeCommande'])->name('pharmacien.listeBonsDeCommande');
         Route::get('/consultbc-{id}', [PharmacienController::class, 'getbc'])->name('getbc');
