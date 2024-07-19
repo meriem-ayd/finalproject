@@ -652,16 +652,7 @@
                                                             </td>
 
                                                             <td>
-                                                                @if (auth()->user()->isChiefPharmacist() && !$bonCommande->is_validated)
-                                                                    <form
-                                                                        action="{{ route('validerBCF', ['id' => $bonCommande->id]) }}"
-                                                                        method="POST">
-                                                                        @csrf
-                                                                        <button type="submit"
-                                                                            class="btn btn-success">Valider le bon de
-                                                                            commande</button>
-                                                                    </form>
-                                                                @endif
+
                                                             </td>
                                                         </tr>
                                                     @endforeach
@@ -674,6 +665,18 @@
                                             <button type="submit" class="btn btn-primary" style="margin-top: 15px;">Réceptionner</button>
                                         </form>
                                         <button type="button" class="btn btn-primary btn-sm ml-2 no-print d-inline-block" onclick="window.print()" style="margin-top: 15px;">Imprimer</button>
+                                    </div>
+                                    <div class="container-fluid w-100">
+                                        @if (auth()->user()->isChiefPharmacist() && !$bonCommande->is_validated)
+                                        <form
+                                            action="{{ route('validerBCF', ['id' => $bonCommande->id]) }}"
+                                            method="POST">
+                                            @csrf
+                                            <button type="submit"
+                                                class="btn btn-success">Valider le bon de
+                                                commande</button>
+                                        </form>
+                                    @endif
                                     </div>
                                 </div>
                             </div>

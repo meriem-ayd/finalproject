@@ -36,7 +36,7 @@ class BonCommandeService extends Model
     }
     public function bonLivraisons()
     {
-        return $this->hasMany(BonLivraisonService::class, 'id_bcs');
+        return $this->hasOne(BonLivraisonService::class, 'id_bcs');
     }
 
 
@@ -71,6 +71,6 @@ class BonCommandeService extends Model
 
     public static function countLivredByMedecin($medecinId)
     {
-        return self::where('etat', 'livré')->where('id_doc', $medecinId)->count();
+        return self::where('etat', 'livré')->where('service_id', $medecinId)->count();
     }
 }

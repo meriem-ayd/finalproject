@@ -36,9 +36,11 @@ class DashboardController extends Controller
         //     }}
         $nbrbcs = 0;
         $nbrOrdos = 0;
+        //$services = Service::all();
+
         $user = auth()->user();
-        if ($user->doctor) {
-           $medecinId = $user->doctor->id;
+        if ($user && $user->doctor) {
+            $medecinId = $user->doctor->service->id;
              $nbrbcs = BonCommandeService::countLivredByMedecin($medecinId);
              $nbrOrdos = Ordonnance::countLivredByMedecin($medecinId);
 

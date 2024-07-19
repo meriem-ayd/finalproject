@@ -16,9 +16,9 @@ class ServiceSeed extends Seeder
     {
         $categories = [
             [
-                'nom_service' => 'reanimation',
-                'email' => 'rea@gmail.com',
-                'password' => 'rea12345',
+                'nom_service' => 'medeine_interne',
+                'email' => 'med@gmail.com',
+                'password' => 'med12345',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
@@ -30,20 +30,20 @@ class ServiceSeed extends Seeder
                 'updated_at' => Carbon::now(),
             ],
             [
-                'nom_service' => 'cardio',
+                'nom_service' => 'cardiologie',
                 'email' => 'card@gmail.com',
                 'password' => 'car12345',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
             [
-                'nom_service' => 'bloc operatoir',
-                'email' => 'opera@gmail.com',
-                'password' => 'oper12345',
+                'nom_service' => 'oncologie',
+                'email' => 'onco@gmail.com',
+                'password' => 'onco12345',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ]
-            
+
             ];
 
         Service::insert($categories);    }

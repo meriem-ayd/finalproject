@@ -745,7 +745,7 @@
     <script src="js/todolist.js"></script>
     <!-- endinject -->
     <!-- Custom js for this page -->
-    <script src="js/data-table.js"></script>
+    {{-- <script src="js/data-table.js"></script> --}}
 </body>
 
 </html>

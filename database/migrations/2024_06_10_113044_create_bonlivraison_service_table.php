@@ -19,10 +19,13 @@ class CreateBonlivraisonServiceTable extends Migration
             $table->unsignedBigInteger('id_pharmacien');
             $table->unsignedBigInteger('id_chef');
             $table->unsignedBigInteger('id_bcs');
+           // $table->unsignedBigInteger('service_id');
 
             $table->foreign('id_pharmacien')->references('id')->on('pharmacists');
             $table->foreign('id_chef')->references('id')->on('chief_pharmacists');
             $table->foreign('id_bcs')->references('id')->on('Bon_commande_service');
+           // $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade');;
+
 
             $table->timestamps();
         });

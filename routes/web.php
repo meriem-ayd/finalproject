@@ -116,7 +116,7 @@ Route::middleware(['userMiddleware'])->group(function () {
 
         // ordonnance
         Route::get('/liste-ordonnances-pharmacien', [PharmacienController::class, 'listeOrdonnancesPharmacien'])->name('ordonnances.pharmacien');
-        Route::get('/ordonnance-pharmacien/{id}', [PharmacienController::class, 'voirOrdonnancePharmacien'])->name('ordonnance.pharmacien');
+        Route::get('/ordonnance-pharmacien-{id}', [PharmacienController::class, 'voirOrdonnancePharmacien'])->name('ordonnance.pharmacien');
         Route::get('/bon-livraison-ordonnance/{id_ordonnance}', [PharmacienController::class, 'createBonLivraisonOrdonnance'])->name('createBonLivraisonOrdonnance');
         Route::post('/bon-livraison-ordonnance', [PharmacienController::class, 'storeBonLivraisonOrdonnance'])->name('bonlivraisonord.store');
     });
@@ -164,8 +164,8 @@ Route::middleware(['userMiddleware'])->group(function () {
 
         // ordonnance
         Route::get('/liste-ordonnances-pharmacien', [PharmacienController::class, 'listeOrdonnancesPharmacien'])->name('ordonnances.pharmacien');
-        Route::get('/ordonnance-pharmacien/{id}', [PharmacienController::class, 'voirOrdonnancePharmacien'])->name('ordonnance.pharmacien');
-        Route::get('/bon-livraison-ordonnance/{id_ordonnance}', [PharmacienController::class, 'createBonLivraisonOrdonnance'])->name('createBonLivraisonOrdonnance');
+        Route::get('/ordonnance-pharmacien-{id}', [PharmacienController::class, 'voirOrdonnancePharmacien'])->name('ordonnance.pharmacien');
+         Route::get('/bon-livraison-ordonnance/{id_ordonnance}', [PharmacienController::class, 'createBonLivraisonOrdonnance'])->name('createBonLivraisonOrdonnance');
         Route::post('/bon-livraison-ordonnance', [PharmacienController::class, 'storeBonLivraisonOrdonnance'])->name('bonlivraisonord.store');
         // etatstock
         Route::get('/etat-stock-form', [DciController::class, 'showEtatStockForm'])->name('showEtatStockForm');

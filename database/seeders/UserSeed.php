@@ -32,8 +32,8 @@ class UserSeed extends Seeder
 
 
         $userChiefPharmacist = User::create([
-            'name' => 'chief pharmacist',
-            'email' => 'chief_pharmacist@gmail.com',
+            'name' => 'dr adnane',
+            'email' => 'dr_adnane@gmail.com',
             'password' => Hash::make('12345678')
         ]);
 
@@ -43,8 +43,8 @@ class UserSeed extends Seeder
 
 
         $userPharmacist = User::create([
-            'name' => 'pharmacist',
-            'email' => 'pharmacist@gmail.com',
+            'name' => 'Mr ferhat_z',
+            'email' => 'pharmacien@gmail.com',
             'password' => Hash::make('12345678'),
         ]);
 
@@ -53,15 +53,15 @@ class UserSeed extends Seeder
         $pharmacist->save();
 
 
-        $userDoctor = User::create([
-            'name' => 'doctor',
-            'email' => 'doctor@gmail.com',
-            'password' => Hash::make('12345678'),
-        ]);
+        // $userDoctor = User::create([
+        //     'name' => 'doctor',
+        //     'email' => 'doctor@gmail.com',
+        //     'password' => Hash::make('12345678'),
+        // ]);
 
-        $doctor = new Doctor();
-        $doctor->speciality = "Cardiologie";
-        $doctor->user_id = $userDoctor->id;
-        $doctor->save();
+        // $doctor = new Doctor();
+        // $doctor->speciality = "Cardiologie";
+        // $doctor->user_id = $userDoctor->id;
+        // $doctor->save();
     }
 }

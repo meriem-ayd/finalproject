@@ -33,7 +33,7 @@ class BonlivraisonService extends Model
     }
     public function ordonnance()
     {
-        return $this->belongsTo(Ordonnance::class, 'id_ordonnance');
+        return $this->belongsTo(Ordonnance::class, 'id_ordonnance', 'id');
     }
     public function bonCommande()
     {

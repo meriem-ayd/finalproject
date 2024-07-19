@@ -607,19 +607,19 @@
         </ul>
       </nav>
       <!-- partial -->
+      @if(Auth::check() && Auth::user()->admin)
+
       <div class="main-panel">
         <div class="content-wrapper">
           <div class="row">
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card" style="background-color: #d3d3d3">
               <div class="card card-statistics">
                 <div class="card-body">
-                  @if(Auth::check() && Auth::user()->admin)
 
                   <div class="clearfix">
-                    <div class="float-left">
+                     <div class="float-left">
                       <i class="mdi mdi-office-building text icon-lg" style="color: #52d1b7;"></i>
 
-                      {{-- <i class="mdi mdi-cube text-danger icon-lg"></i> --}}
                     </div>
                     <div class="float-right">
                       <a href="{{route('listeServices')}}">
@@ -690,8 +690,8 @@
             </div>
             @endif
 
-            @if(Auth::check() && Auth::user()->pharmacist)
-            <div class="clearfix">
+            {{-- @if(Auth::check() && Auth::user()->pharmacist) --}}
+            {{-- <div class="clearfix">
               <div class="float-left">
                 <i class="mdi mdi-file text icon-lg" style="color: #52d1b7"></i>
               </div>
@@ -708,10 +708,10 @@
             </p>
           </div>
         </div>
-      </div>
+      </div> --}}
 
 
-      <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
+      {{-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
         <div class="card card-statistics">
           <div class="card-body">
             <div class="clearfix">
@@ -723,7 +723,7 @@
                   <h6 class="mb-0 text-right text-dark">Ordonnances servies</h6>
                 </a>
                 {{-- <p class="mb-0 text-right text-dark"></p> --}}
-                <div class="fluid-container">
+                {{-- <div class="fluid-container">
                   <h3 class="font-weight-medium text-right mb-0 text-dark"></h3>
                 </div>
               </div>
@@ -746,7 +746,7 @@
                   <h6 class="mb-0 text-right text-dark">Ordonnances Non servies</h6>
                 </a>
                 {{-- <p class="mb-0 text-right text-dark">ordonnances Non servies</p> --}}
-                <div class="fluid-container">
+                {{-- <div class="fluid-container">
                   <h3 class="font-weight-medium text-right mb-0 text-dark"></h3>
                 </div>
               </div>
@@ -768,9 +768,9 @@
               <div class="float-right">
                 <a href="">
                   <h6 class="mb-0 text-right text-dark">Bon de commande servis</h6>
-                </a>
+                </a> --}}
                 {{-- <p class="mb-0 text-right text-dark">Bon de commande  servis</p> --}}
-                <div class="fluid-container">
+                {{-- <div class="fluid-container">
                   <h3 class="font-weight-medium text-right mb-0 text-dark"></h3>
                 </div>
               </div>
@@ -778,10 +778,10 @@
           </div>
 
         </div>
-      </div>
+      </div> --}}
 
 
-      <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
+      {{-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
         <div class="card card-statistics">
           <div class="card-body">
             <div class="clearfix">
@@ -791,10 +791,10 @@
               <div class="float-right">
                 <a href="">
                   <h6 class="mb-0 text-right text-dark">Bon de commande Non servis</h6>
-                </a>
+                </a> --}}
 
                 {{-- <p class="mb-0 text-right text-dark">Bon de commande Non servis</p> --}}
-                <div class="fluid-container">
+                {{-- <div class="fluid-container">
                   <h3 class="font-weight-medium text-right mb-0 text-dark"></h3>
                 </div>
               </div>
@@ -803,15 +803,19 @@
 
         </div>
       </div>
+ --}}
 
-
-      @endif
+      {{-- @endif --}}
 
       @if(Auth::check() && Auth::user()->doctor)
-
-
-      <div class="clearfix">
-        <div class="float-left">
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card" style="background-color: #d3d3d3">
+              <div class="card card-statistics">
+                <div class="card-body">
+                  <div class="clearfix">
+             <div class="float-left">
           <i class="mdi mdi-file text icon-lg" style="color: #52d1b7"></i>
         </div>
         <div class="float-right">

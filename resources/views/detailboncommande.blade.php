@@ -232,9 +232,7 @@
           <!-- chat tab ends -->
         </div>
       </div>
-      <!-- partial -->
-      <!-- partial -->
-      <!-- partial:partials/_sidebar.html -->
+
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav nav-height">
           <li class="nav-item nav-profile">
@@ -265,9 +263,9 @@
 
             @if(Auth::check() && Auth::user()->pharmacist)
             <span class="nav-link" href="#">
-              <div class="profile-image online">
+              {{-- <div class="profile-image online">
                 <img src="images/faces/icone2.jpg" />
-              </div>
+              </div> --}}
               <p> Bienvenue {{ Auth::user()->name }} </p>
               <p> {{ Auth::user()->email }} </p>
 
@@ -453,12 +451,12 @@
           @if(Auth::check() && Auth::user()->doctor()->exists())
 
           <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" href="#bcs" aria-expanded="false" aria-controls="sidebar-layouts">
+            <a class="nav-link" data-bs-toggle="collapse" href="#bcs1" aria-expanded="false" aria-controls="sidebar-layouts">
               <span class="mdi mdi-file"></span>
               <span class="menu-title"> Bons de Commande</span>
               <i class="mdi mdi-chevron-right menu-arrow"></i>
             </a>
-            <div class="collapse" id="bcs">
+            <div class="collapse" id="bcs1">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="{{route('bons-de-commande.medecin')}}"> <span class="mdi mdi-list-box">liste bons commande</span></a></li>
 
@@ -711,10 +709,6 @@
                     </div>
                   </div>
                 </div>
-
-
-
-
               </div>
             </div>
 
@@ -738,49 +732,34 @@
             </ul>
           </div>
           @endif
-          <!-- Inclure jQuery -->
-          <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-          <!-- Inclure Bootstrap JavaScript -->
-          <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-          <script>
-            // Fonction pour lancer l'impression
-            function printBonDeCommande() {
-              window.print();
-            }
-          </script>
-</body>
+
+
+
 </div>
 </div>
 </div>
 </div>
 
 
-<!-- content-wrapper ends -->
-<!-- partial:../../partials/_footer.html -->
+</div>
 
-<!-- partial -->
 </div>
-<!-- main-panel ends -->
+
 </div>
-<!-- page-body-wrapper ends -->
-</div>
-<!-- container-scroller -->
-<!-- plugins:js -->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
 <script src="vendors/js/vendor.bundle.base.js"></script>
-<!-- endinject -->
-<!-- Plugin js for this page -->
-<script src="vendors/datatables.net/jquery.dataTables.js"></script>
-<script src="vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
-<!-- End plugin js for this page -->
-<!-- inject:js -->
-<script src="js/off-canvas.js"></script>
-<script src="js/hoverable-collapse.js"></script>
-<script src="js/misc.js"></script>
-<script src="js/settings.js"></script>
-<script src="js/todolist.js"></script>
-<!-- endinject -->
-<!-- Custom js for this page -->
-<script src="js/data-table.js"></script>
+
+
+
+<script>
+    // Fonction pour lancer l'impression
+    function printBonDeCommande() {
+      window.print();
+    }
+  </script>
 <!-- End custom js for this page -->
 </body>
 

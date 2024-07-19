@@ -729,7 +729,6 @@
 <script src="js/todolist.js"></script>
 <!-- endinject -->
 <!-- Custom js for this page -->
-<script src="js/data-table.js"></script>
         <!-- container-scroller -->
         <!-- plugins:js -->
         <script src="vendors/js/vendor.bundle.base.js"></script>

@@ -29567,13 +29567,13 @@ dl li {
 }
 
 .auth .auth-form-dark {
-  background-color:  #52d1b74D;
-  border: 1px solid #ccc;
-  padding: 20px;
-  border-radius: 25px;
-  margin-left: 0.1px;
-  width: 500px;
-}
+    background-color:  #52d1b74D;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 25px;
+    margin-left: 0.1px;
+    width: 500px;
+  }
 /* .auth .auth-form-dark {
     background-color: #52d1b74D;
     border: 1px solid #ccc;

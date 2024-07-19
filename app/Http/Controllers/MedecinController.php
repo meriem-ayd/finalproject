@@ -324,21 +324,23 @@ class MedecinController extends Controller
         return view('ordonnances', compact('ordonnance', 'medecin', 'dcis'));
     }
 
-
     public function listeBonsDeLivraison()
     {
-        // Vérifier si l'utilisateur est authentifié
         $user = auth()->user();
 
         if ($user && $user->doctor) {
-            $idMedecin = $user->doctor->id;
+            $idMedecin = $user->doctor->service->id;
 
             // Filtrer les bons de livraison pour inclure uniquement ceux qui sont associés aux commandes du médecin
             $bonsDeLivraison = BonLivraisonService::with(['ordonnance', 'bonCommande'])
-                ->whereHas('bonCommande', function ($query) use ($idMedecin) {
-                    $query->where('id_doc', $idMedecin);
-                })
-                ->get();
+            ->whereHas('bonCommande', function ($query) use ($idMedecin) {
+                $query->where('service_id', $idMedecin);
+            })
+            ->orWhereHas('ordonnance', function ($query) use ($idMedecin) {
+                $query->where('service_id', $idMedecin);
+            })
+            ->get();
+ 
 
             return view('medecin.listeBonLivraison', compact('bonsDeLivraison'));
         } else {

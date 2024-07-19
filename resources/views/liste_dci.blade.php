@@ -375,7 +375,6 @@
                             </a>
                         </li> --}}
 
-         <li class="nav-item"> <a class="nav-link" href="{{route('showEtatStockForm')}}"><span class="mdi mdi-note"></span>Etat de Stock</a></li>
 
               <li class="nav-item">
                 <a class="nav-link" href="{{route('getAdminLogout')}}">

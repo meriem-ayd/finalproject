@@ -42,6 +42,10 @@ class Ordonnance extends Model
         return $this->belongsTo(Service::class, 'id_service');
     }
 
+    public function bonLivraisons()
+    {
+        return $this->hasOne(BonLivraisonService::class, 'id_ordonnance');
+    }
 
     // codification
     public static function generateOrdonnanceNumber()
@@ -65,6 +69,6 @@ class Ordonnance extends Model
 
     public static function countLivredByMedecin($medecinId)
     {
-        return self::where('etat', 'livré')->where('id_doc', $medecinId)->count();
+        return self::where('etat', 'livré')->where('service_id', $medecinId)->count();
     }
 }

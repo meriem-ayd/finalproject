@@ -268,9 +268,8 @@
               <div class="profile-image online">
                 <img src="images/faces/icone2.jpg" />
               </div>
-              <p> Bienvenue
-                <hr>{{ Auth::user()->name }} </p>
-              {{-- <p> {{ Auth::user()->email }} </p> --}}
+              <p> Bienvenue {{ Auth::user()->name }} </p>
+              <p> {{ Auth::user()->email }} </p>
 
             </span>
             @endif
@@ -571,7 +570,6 @@
           </li>
           <!--  -->
 
-          <li class="nav-item"> <a class="nav-link" href="{{route('showEtatStockForm')}}"><span class="mdi mdi-note"></span>Etat de Stock</a></li>
 
 
           <li class="nav-item">
@@ -752,7 +750,7 @@
 </body>
 
 <!-- Mirrored from demo.bootstrapdash.com/xollo/template/demo_1/pages/forms/basic_elements.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 16 May 2024 22:42:47 GMT -->
-<scrip>
+<script>
   function initialiserSelect2() {
     $('.dci-select').select2({
       placeholder: "Sélectionnez une DCI",
@@ -850,22 +848,5 @@
     });
   });
 </script>
-
-
-
-
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-<script src="vendors/js/vendor.bundle.base.js"></script>
-<script src="vendors/datatables.net/jquery.dataTables.js"></script>
-<script src="vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
-<script src="js/off-canvas.js"></script>
-<script src="js/hoverable-collapse.js"></script>
-<script src="js/misc.js"></script>
-<script src="js/settings.js"></script>
-<script src="js/todolist.js"></script>
-<script src="js/data-table.js"></script>
-
-</body>
 
 </html>
